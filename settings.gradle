@@ -1,0 +1,4 @@
+rootProject.name = 'log-example'
+
+include 'log-example-common'
+include 'log-example-server'

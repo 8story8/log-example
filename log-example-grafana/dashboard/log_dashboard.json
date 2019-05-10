@@ -1,0 +1,224 @@
+{
+   "annotations":{
+      "list":[
+         {
+            "builtIn":1,
+            "datasource":"-- Grafana --",
+            "enable":true,
+            "hide":true,
+            "iconColor":"rgba(0, 211, 255, 1)",
+            "name":"Annotations & Alerts",
+            "type":"dashboard"
+         }
+      ]
+   },
+   "editable":true,
+   "gnetId":null,
+   "graphTooltip":0,
+   "id":1,
+   "iteration":1557479755268,
+   "links":[
+
+   ],
+   "panels":[
+      {
+         "columns":[
+            {
+               "text":"_index",
+               "value":"_index"
+            },
+            {
+               "text":"@timestamp",
+               "value":"@timestamp"
+            },
+            {
+               "text":"level",
+               "value":"level"
+            },
+            {
+               "text":"message",
+               "value":"message"
+            }
+         ],
+         "datasource":"Elasticsearch",
+         "fontSize":"100%",
+         "gridPos":{
+            "h":19,
+            "w":24,
+            "x":0,
+            "y":0
+         },
+         "id":2,
+         "links":[
+
+         ],
+         "pageSize":20,
+         "scroll":true,
+         "showHeader":true,
+         "sort":{
+            "col":1,
+            "desc":true
+         },
+         "styles":[
+            {
+               "alias":"Date",
+               "colorMode":null,
+               "colors":[
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+               ],
+               "dateFormat":"YYYY-MM-DD HH:mm:ss",
+               "decimals":2,
+               "mappingType":1,
+               "pattern":"_index",
+               "thresholds":[
+
+               ],
+               "type":"string",
+               "unit":"short"
+            },
+            {
+               "alias":"Timestamp",
+               "colorMode":null,
+               "colors":[
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+               ],
+               "dateFormat":"YYYY-MM-DD HH:mm:ss.SSS",
+               "decimals":2,
+               "mappingType":1,
+               "pattern":"@timestamp",
+               "thresholds":[
+
+               ],
+               "type":"date",
+               "unit":"short"
+            },
+            {
+               "alias":"Level",
+               "colorMode":null,
+               "colors":[
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+               ],
+               "dateFormat":"YYYY-MM-DD HH:mm:ss",
+               "decimals":2,
+               "mappingType":1,
+               "pattern":"level",
+               "thresholds":[
+
+               ],
+               "type":"string",
+               "unit":"short"
+            },
+            {
+               "alias":"Message",
+               "colorMode":null,
+               "colors":[
+                  "rgba(245, 54, 54, 0.9)",
+                  "rgba(237, 129, 40, 0.89)",
+                  "rgba(50, 172, 45, 0.97)"
+               ],
+               "dateFormat":"YYYY-MM-DD HH:mm:ss",
+               "decimals":2,
+               "mappingType":1,
+               "pattern":"message",
+               "thresholds":[
+
+               ],
+               "type":"string",
+               "unit":"short"
+            }
+         ],
+         "targets":[
+            {
+               "bucketAggs":[
+
+               ],
+               "metrics":[
+                  {
+                     "field":"select field",
+                     "id":"1",
+                     "meta":{
+
+                     },
+                     "settings":{
+                        "size":500
+                     },
+                     "type":"raw_document"
+                  }
+               ],
+               "query":"",
+               "refId":"A",
+               "timeField":"@timestamp"
+            }
+         ],
+         "timeFrom":null,
+         "timeShift":null,
+         "title":"Event Logs",
+         "transform":"json",
+         "type":"table"
+      }
+   ],
+   "refresh":"5s",
+   "schemaVersion":18,
+   "style":"dark",
+   "tags":[
+
+   ],
+   "templating":{
+      "list":[
+         {
+            "datasource":"Elasticsearch",
+            "filters":[
+               {
+                  "key":"_index",
+                  "operator":"!=",
+                  "value":"metricbeat-*"
+               }
+            ],
+            "hide":0,
+            "label":"",
+            "name":"Filters",
+            "skipUrlSync":false,
+            "type":"adhoc"
+         }
+      ]
+   },
+   "time":{
+      "from":"now-6h",
+      "to":"now"
+   },
+   "timepicker":{
+      "refresh_intervals":[
+         "5s",
+         "10s",
+         "30s",
+         "1m",
+         "5m",
+         "15m",
+         "30m",
+         "1h",
+         "2h",
+         "1d"
+      ],
+      "time_options":[
+         "5m",
+         "15m",
+         "1h",
+         "6h",
+         "12h",
+         "24h",
+         "2d",
+         "7d",
+         "30d"
+      ]
+   },
+   "timezone":"",
+   "title":"Server Event Logs",
+   "uid":"c_ETZ-mWz",
+   "version":15
+}

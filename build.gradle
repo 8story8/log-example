@@ -1,0 +1,55 @@
+ext {
+  springBootVersion = '2.1.3.RELEASE'
+  esVersion = '3.2.0.M2'
+}
+
+buildscript {
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
+    mavenCentral()
+  }
+}
+
+subprojects {
+  // do Java specific configurations
+  apply plugin: 'java'
+  apply plugin: 'maven'
+  apply plugin: 'eclipse'
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+
+  eclipseJdt.doLast({
+  ant.propertyfile(file: ".settings/org.eclipse.core.resources.prefs") {
+    ant.entry(key: "eclipse.preferences.version", value: "1")
+    ant.entry(key: "encoding/<project>", value: "utf8")
+  }
+  })
+  compileJava.options.encoding = 'UTF-8'
+  
+  repositories {
+    mavenLocal()
+     maven {
+      url "http://maven.springframework.org/milestone/"
+    }
+    mavenCentral()
+  }
+
+  dependencies {
+   	compileOnly 'org.projectlombok:lombok:1.16.6'
+   	compile 'ch.qos.logback:logback-classic:1.2.3'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile "org.springframework.data:spring-data-elasticsearch:${esVersion}"
+  }
+
+  task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+  }
+ 
+  artifacts {
+    archives sourcesJar
+  }
+}
+

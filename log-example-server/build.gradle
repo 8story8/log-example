@@ -1,0 +1,5 @@
+dependencies {
+  compile project(':log-example-common') 
+  compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+  compile "net.logstash.logback:logstash-logback-encoder:5.3"
+}

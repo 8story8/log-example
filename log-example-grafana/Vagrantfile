@@ -1,0 +1,14 @@
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder ".", "/vagrant"
+
+  config.vm.network "forwarded_port", guest: 9200, host: 9200
+  config.vm.network "forwarded_port", guest: 9201, host: 9201
+  config.vm.network "forwarded_port", guest: 9202, host: 9202
+  config.vm.network "forwarded_port", guest: 4560, host: 4560
+  config.vm.network "forwarded_port", guest: 5601, host: 5601
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
+
+  config.vm.provision "shell", inline: "sudo groupadd docker"
+  config.vm.provision "shell", inline: "sudo usermod -aG docker #{USER_NAME}"
+  config.vm.provision "shell", inline: "sudo --user #{USER_NAME} /vagrant/install_grafana.sh /home/#{USER_NAME} > /dev/null 2>&1"
+end
