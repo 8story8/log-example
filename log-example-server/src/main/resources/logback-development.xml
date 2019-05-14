@@ -7,7 +7,7 @@
 
 	<appender name="STASH"
 		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-		<destination>192.168.5.118:4560</destination>
+		<destination>192.168.5.250:4560</destination>
 		<encoder>
 			<pattern>%d{ISO8601} %-5level %msg%n</pattern>
 		</encoder>

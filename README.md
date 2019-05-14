@@ -3,4 +3,9 @@
 2. set "spring.elastic.hosts" in application-development.yaml
 3. set "destination" in logback-development.yaml
 4. "-Dspring.profiles.active=development"
-5. import dashboards to grafana
+
+## Reference
+1. spring boot server : 8080
+2. grafana : 3000
+3. elasticsearch : 9200
+4. kibana : 5601

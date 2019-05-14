@@ -4,7 +4,7 @@ server:
 spring:
   elastic:
     cluster: elasticsearch
-    hosts: 192.168.5.118
+    hosts: 192.168.5.250
     port: 9300
     
 logging:
