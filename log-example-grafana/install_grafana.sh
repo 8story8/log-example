@@ -13,6 +13,7 @@ sudo yum install yum-utils device-mapper-persistent-data lvm2 -y
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum install docker-ce docker-ce-cli containerd.io -y 
 sudo systemctl start docker > /dev/null
+sudo setfacl -m u:1000:rw /var/run/docker.sock
 
 # install and execute elasticsearch
 MACHINE_IP=$(ip address | grep eth0 | grep inet | awk '{print $2}' | cut -d '/' -f1)
@@ -196,7 +197,21 @@ metricbeat.modules:
   enabled: true
   period: 10s
   processes: ['.*']
- 
+
+- module: docker
+  metricsets:
+    - "container"
+    - "cpu"
+    - "diskio"
+    - "healthcheck"
+    - "info"
+    - "image"
+    - "memory"
+    - "network"
+  hosts: ["unix:///var/run/docker.sock"]
+  period: 10s
+  enabled: true
+
 name: test
  
 output.elasticsearch:
@@ -220,4 +235,5 @@ docker run -d --net="host" --name metricbeat \
   --mount type=bind,source=/proc,target=/hostfs/proc,readonly \
   --mount type=bind,source=/sys/fs/cgroup,target=/hostfs/sys/fs/cgroup,readonly \
   --mount type=bind,source=/,target=/hostfs,readonly \
+  --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock,readonly \
   docker.elastic.co/beats/metricbeat:6.4.0 -system.hostfs=/hostfs
